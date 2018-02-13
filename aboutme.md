@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: Do you really want to know?
 ---
 
 My name is Joao Vicente.
