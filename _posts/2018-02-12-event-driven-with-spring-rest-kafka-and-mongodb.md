@@ -96,7 +96,7 @@ $ http POST localhost:8080/authors name=joao email=joao.diogo.vicente@gmail.com
 
 and the output shows the DTO returned as expected
 
-~~~
+```
 HTTP/1.1 200 
 Content-Type: application/json;charset=UTF-8
 Date: Sat, 13 Jan 2018 23:00:26 GMT
@@ -106,7 +106,7 @@ Transfer-Encoding: chunked
     "email": "joao.diogo.vicente@gmail.com", 
     "name": "joao"
 }
-~~~
+```
 
 ## Enter Kafka
 
