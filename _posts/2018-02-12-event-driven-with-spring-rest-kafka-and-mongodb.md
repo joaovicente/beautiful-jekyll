@@ -3,10 +3,10 @@ layout: post
 title: 'Event driven with Spring REST, Kafka and MongoDB'
 published: true
 ---
-The aim of this post is to illustrate how to build a simple Event Driven system using
+The aim of this post is to illustrate how to build a simple Event Driven system using: 
 * Spring REST
-* MongoDB
 * Kafka
+* MongoDB
 
 In this post we'll pretend we are creating a Story editing web application, where authors can create their account and then create stories.
 
@@ -44,7 +44,7 @@ and run it
 $ mvn spring-boot:run
 ```
 
-So the application runs but is does not do anything useful, so lets stop the app now and let's create a `CreatAuthorController` by editing `./src/main/java/com/joaovicente/CreateAuthorController.java` and add  POST capabilities
+So the application runs but is does not do anything useful, so lets stop the app now (using `ctrl+C`) and let's create a `CreateAuthorController` by editing `./src/main/java/io/github/joaovicente/CreateAuthorController.java` and add  POST capabilities
 
 The handler method as shown below, to expose`POST /authors`
 
@@ -66,10 +66,10 @@ public class CreateAuthorController {
 }
 ```
 
-which will use the `/src/main/java/com/joaovicente/CreateAuthorDto.java` shown below
+which for the time being will simply take in a  `./src/main/java/io/github/joaovicente/CreateAuthorDto.java` (below) and return it back to the caller
 
 ```java
-package com.joaovicente.stories;
+package io.github.joaovicente.stories;
 
 import lombok.Data;
 
@@ -86,15 +86,9 @@ Let's run the app
 $ mvn spring-boot:run
 ```
 
-and try out the `GET` endpoint
+and create a new author via the  `POST` endpoint
 
-```bash
-$ curl http://localhost:8080/authors/123
-```
-
-I am going to use [httpie](https://httpie.org/) instead of curl to interact with the REST interface
-
-So here goes a POST /authors
+> We are going to use [httpie](https://httpie.org/) instead of curl to interact with the REST interface because it is so much more expressive
 
 ```bash
 $ http POST localhost:8080/authors name=joao email=joao.diogo.vicente@gmail.com
@@ -112,7 +106,15 @@ Transfer-Encoding: chunked
     "email": "joao.diogo.vicente@gmail.com", 
     "name": "joao"
 }
-~~
+~~~
 
-## Enter MongoDB
+## Enter Kafka
+
+In an Event Driven system, a command handler would handle a command (e.g. create-author) and if validation passes it would then issue a author-created event.
+The author-created event would then be published so that subscribers can be consume it.
+
+So, in the next step we are going to 
+1. Create the author-created event (without validating the command because we're living dangerously) 
+2. Publish the event into the author-created Kafka topic 
+3. Consume it back in the service (so we can then persist it later on in MongoDB)
 
