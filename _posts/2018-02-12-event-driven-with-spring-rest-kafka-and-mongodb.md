@@ -16,7 +16,7 @@ I'll throw in a few tooling goodies along the way, which should make life easier
 
 Enough chat, time for sleeve rolling
 
-### Going REST...full....ish
+## Going REST...full....ish
 Let's start by creating a Spring Boot project
 
 Let's start by building the `Author` service. We'll depend on web for REST capabilities and `lombok` to auto-generate getters and setters for the REST DTOs. We're also going to throw in `data-mongodb` and `kafka` dependencies as we are going to use them later on.
@@ -96,13 +96,13 @@ I am going to use [httpie](https://httpie.org/) instead of curl to interact with
 
 So here goes a POST /authors
 
-```
+```bash
 http POST localhost:8080/authors name=joao email=joao.diogo.vicente@gmail.com
 ```
 
 and the output shows the DTO returned as expected
 
-```
+```bash
 HTTP/1.1 200 
 Content-Type: application/json;charset=UTF-8
 Date: Sat, 13 Jan 2018 23:00:26 GMT
@@ -114,4 +114,5 @@ Transfer-Encoding: chunked
 }
 ```
 
+## MongoDB enters
 
