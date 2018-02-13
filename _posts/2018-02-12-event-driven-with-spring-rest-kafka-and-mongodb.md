@@ -49,7 +49,7 @@ So the application runs but is does not do anything useful, so lets stop the app
 The handler method as shown below, to expose`POST /authors`
 
 ```java
-package com.joaovicente.stories;
+package io.github.joaovicente.stories;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
