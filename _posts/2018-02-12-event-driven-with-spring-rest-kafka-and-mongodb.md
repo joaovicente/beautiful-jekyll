@@ -111,7 +111,7 @@ Transfer-Encoding: chunked
 ## Enter Kafka
 
 In an Event Driven system, a command handler would handle a command (e.g. create-author) and if validation passes it would then issue a author-created event.
-The author-created event would then be published so that subscribers can be consume it.
+The author-created event would then be published so that subscribers can consume it.
 
 So, in the next step we are going to 
 1. Create the author-created event (without validating the command because we're living dangerously) 
