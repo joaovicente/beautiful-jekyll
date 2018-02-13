@@ -5,8 +5,8 @@ published: false
 ---
 The aim of this post is to illustrate how to build a simple Event Driven system using
 * Spring REST
-* Kafka
 * MongoDB
+* Kafka
 
 In this post we'll pretend we are creating a Story editing web application, where authors can create their account and then create stories.
 
@@ -43,3 +43,75 @@ and run it
 ```bash
 $ mvn spring-boot:run
 ```
+
+So the application runs but is does not do anything useful, so lets stop the app now and let's create a`CreatAuthorController`by editing`./src/main/java/com/joaovicente/CreateAuthorController.java`and add  POST capabilities
+
+The handler method as shown below, to expose`POST /authors`
+
+```java
+package com.joaovicente.stories;
+
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@RestController
+public class CreateAuthorController {
+    @RequestMapping(value = "/authors", method = RequestMethod.POST)
+
+    public CreateAuthorDto createAuthor(@RequestBody CreateAuthorDto createAuthorDto) {
+        return createAuthorDto;
+    }
+}
+```
+
+which will use the`/src/main/java/com/joaovicente/CreateAuthorDto.java` shown below
+
+```java
+package com.joaovicente.stories;
+
+import lombok.Data;
+
+@Data
+public class CreateAuthorDto {
+    private String name;
+    private String email;
+}
+```
+
+Let's run the app
+
+```bash
+mvn spring-boot:run
+```
+
+and try out the `GET` endpoint
+
+```bash
+curl http://localhost:8080/authors/123
+```
+
+I am going to use [httpie](https://httpie.org/) instead of curl to interact with the REST interface
+
+So here goes a POST /authors
+
+```
+http POST localhost:8080/authors name=joao email=joao.diogo.vicente@gmail.com
+```
+
+and the output shows the DTO returned as expected
+
+```
+HTTP/1.1 200 
+Content-Type: application/json;charset=UTF-8
+Date: Sat, 13 Jan 2018 23:00:26 GMT
+Transfer-Encoding: chunked
+
+{
+    "email": "joao.diogo.vicente@gmail.com", 
+    "name": "joao"
+}
+```
+
+
