@@ -44,7 +44,7 @@ and run it
 $ mvn spring-boot:run
 ```
 
-So the application runs but is does not do anything useful, so lets stop the app now and let's create a`CreatAuthorController`by editing`./src/main/java/com/joaovicente/CreateAuthorController.java`and add  POST capabilities
+So the application runs but is does not do anything useful, so lets stop the app now and let's create a `CreatAuthorController` by editing `./src/main/java/com/joaovicente/CreateAuthorController.java` and add  POST capabilities
 
 The handler method as shown below, to expose`POST /authors`
 
@@ -66,7 +66,7 @@ public class CreateAuthorController {
 }
 ```
 
-which will use the`/src/main/java/com/joaovicente/CreateAuthorDto.java` shown below
+which will use the `/src/main/java/com/joaovicente/CreateAuthorDto.java` shown below
 
 ```java
 package com.joaovicente.stories;
