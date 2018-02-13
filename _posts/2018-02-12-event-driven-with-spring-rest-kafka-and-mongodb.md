@@ -83,13 +83,13 @@ public class CreateAuthorDto {
 Let's run the app
 
 ```bash
-mvn spring-boot:run
+$ mvn spring-boot:run
 ```
 
 and try out the `GET` endpoint
 
 ```bash
-curl http://localhost:8080/authors/123
+$ curl http://localhost:8080/authors/123
 ```
 
 I am going to use [httpie](https://httpie.org/) instead of curl to interact with the REST interface
@@ -97,12 +97,12 @@ I am going to use [httpie](https://httpie.org/) instead of curl to interact with
 So here goes a POST /authors
 
 ```bash
-http POST localhost:8080/authors name=joao email=joao.diogo.vicente@gmail.com
+$ http POST localhost:8080/authors name=joao email=joao.diogo.vicente@gmail.com
 ```
 
 and the output shows the DTO returned as expected
 
-```bash
+~~~
 HTTP/1.1 200 
 Content-Type: application/json;charset=UTF-8
 Date: Sat, 13 Jan 2018 23:00:26 GMT
@@ -112,7 +112,7 @@ Transfer-Encoding: chunked
     "email": "joao.diogo.vicente@gmail.com", 
     "name": "joao"
 }
-```
+~~
 
-## MongoDB enters
+## Enter MongoDB
 
