@@ -14,7 +14,7 @@ baseurl: ""
 # Of course don't forget to change the username and projectname to YOUR username and project
 
 # Name of website
-title: Engineer at heart
+title: It's time to play outside!
 
 # Short description of your site
 description: !
@@ -73,20 +73,20 @@ author:
 social-network-links:
   rss: true
   email: "joao.diogo.vicente@gmail.com"
-  #facebook: daattali
+  #facebook: 
   github: joaovicente
   twitter: thejoaovicente
 #  reddit: yourname
-#  google-plus: +DeanAttali
-#  linkedin: daattali
+#  google-plus: 
+#  linkedin: 
 #  xing: yourname
-#  stackoverflow: "3943160/daattali"
-#  snapchat: deanat78
-#  instagram: deanat78
-#  youtube: user/deanat78
-#  spotify: yourname
-#  telephone: +14159998888
-#  steam: deanat78
+#  stackoverflow: 
+#  snapchat: 
+#  instagram: 
+#  youtube: 
+#  spotify: 
+#  telephone: 
+#  steam: 
 #  twitch: yourname
 #  yelp: yourname
 
