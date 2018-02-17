@@ -118,3 +118,56 @@ So, in the next step we are going to
 2. Publish the event into the author-created Kafka topic 
 3. Consume it back in the service (so we can then persist it later on in MongoDB)
 
+### Setting up Kafka
+The easiest way to get Kafka up-and-running is by using the Confluent Kafka Docker OSS images. For the purpose of this article, we're going to create the simplest Kafka deployment, which requires the [Kafka](https://hub.docker.com/r/confluentinc/cp-kafka/) and the [Zookeepeer](https://hub.docker.com/r/confluentinc/cp-zookeeper/) Docker images.
+
+Now let's create a `docker-compose-kafka.yml` Docker Compose file which we are going to use to bring-up Kafka.
+
+```yaml
+---
+version: '2'
+services:
+    zookeeper:
+    image: "confluentinc/cp-zookeeper:4.0.0"
+    hostname: zookeeper
+    ports:
+      - '32181:32181'
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
+    extra_hosts:
+      - "moby:127.0.0.1"
+
+  kafka:
+    image: "confluentinc/cp-kafka:4.0.0"
+    hostname: kafka
+    ports:
+      - '9092:9092'
+      - '29092:29092'
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    extra_hosts:
+      - "moby:127.0.0.1"
+```
+
+There is a useful command line utility called [kafkacat](https://github.com/edenhill/kafkacat) which is handy to interact with Kafka, for example, to pulish and consume messages from topics
+
+Under linux Kafkacat can be installed using
+
+``` 
+$ sudo apt-get install kafkacat
+```
+
+Ok, time to start Kafka
+
+```
+$ docker-compose up -f docker-compose-kafka.yml
+```
