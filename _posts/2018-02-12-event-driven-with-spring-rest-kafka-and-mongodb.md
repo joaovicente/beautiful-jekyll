@@ -169,5 +169,7 @@ $ sudo apt-get install kafkacat
 Ok, time to start Kafka
 
 ```
-$ docker-compose up -f docker-compose-kafka.yml
+$ docker-compose -f docker-compose-kafka.yml down
 ```
+
+
