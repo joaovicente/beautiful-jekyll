@@ -165,12 +165,14 @@ Under linux Kafkacat can be installed using
 ```bash
 $ sudo apt-get install kafkacat
 ```
-
-Ok, time to start Kafka
+ 
+### Start Kafka
 
 ```bash
 $ docker-compose -f docker-compose-kafka.yml up
 ```
+
+### Test Kafka
 
 check the kafka broker is listening and has no topics
 
