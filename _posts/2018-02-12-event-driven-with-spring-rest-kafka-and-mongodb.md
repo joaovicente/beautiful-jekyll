@@ -127,7 +127,7 @@ Now let's create a `docker-compose-kafka.yml` Docker Compose file which we are g
 ---
 version: '2'
 services:
-    zookeeper:
+  zookeeper:
     image: "confluentinc/cp-zookeeper:4.0.0"
     hostname: zookeeper
     ports:
