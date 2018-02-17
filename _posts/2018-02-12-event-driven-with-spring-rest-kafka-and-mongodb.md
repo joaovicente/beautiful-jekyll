@@ -169,7 +169,7 @@ $ sudo apt-get install kafkacat
 Ok, time to start Kafka
 
 ```bash
-$ docker-compose -f docker-compose-kafka.yml down
+$ docker-compose -f docker-compose-kafka.yml up
 ```
 
 check the kafka broker is listening and has no topics
