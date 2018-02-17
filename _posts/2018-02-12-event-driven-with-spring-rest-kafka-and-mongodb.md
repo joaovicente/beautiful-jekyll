@@ -193,7 +193,7 @@ $ kafkacat -P -b localhost -t greeting
 hello1
 hello2
 ```
-exit with `Ctrl+C`
+exit using `Ctrl+C`
 
 now consume the messages from `greeting` topic
 
