@@ -162,14 +162,51 @@ There is a useful command line utility called [kafkacat](https://github.com/eden
 
 Under linux Kafkacat can be installed using
 
-``` 
+```bash
 $ sudo apt-get install kafkacat
 ```
 
 Ok, time to start Kafka
 
-```
+```bash
 $ docker-compose -f docker-compose-kafka.yml down
 ```
+
+check the kafka broker is listening and has no topics
+
+```bash
+$ kafkacat -L -b localhost
+```
+
+you should see this
+~~~
+Metadata for all topics (from broker -1: localhost:9092/bootstrap):
+ 1 brokers:
+  broker 1 at localhost:9092
+ 0 topics:
+~~~
+
+now try publishing a couple of messages using stdin to a `greeting` topic using `kafkacat`
+
+```bash
+$ kafkacat -P -b localhost -t greeting
+hello1
+hello2
+```
+exit with `Ctrl+C`
+
+now consume the messages from `greeting` topic
+
+```bash
+$ kafkacat -C -b localhost -t greeting
+```
+
+if you see
+~~~
+hello1
+hello2
+~~~
+in the console your Kafka is ready to go!
+
 
 
