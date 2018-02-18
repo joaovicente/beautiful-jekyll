@@ -278,12 +278,12 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public ProducerFactory<String, AuthorCreated> producerFactory() {
+    public ProducerFactory<String, ?> producerFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
 
     @Bean
-    public KafkaTemplate<String, AuthorCreated> kafkaTemplate() {
+    public KafkaTemplate<String, ?> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 }
