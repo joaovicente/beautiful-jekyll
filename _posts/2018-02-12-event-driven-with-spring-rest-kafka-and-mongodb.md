@@ -210,7 +210,85 @@ hello2
 ~~~
 in the console your Kafka is ready to go!
 
-## Creating the `author-created` event
+## Defining the AuthorCreated event
+The AuthorCreated event is the POJO which will be serialised and sent to the the `author-created` Kafka topic
+
+`./src/main/java/io/github/joaovicente/stories/AuthorCreated.java`
+
+```java
+package io.github.joaovicente.stories;
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class AuthorCreated {
+    private String name;
+    private String email;
+}
+```
+
+Using `lombok` `@Data` and `@Builder` allows us to create the POJO without having to write any boiler plate code such as getters, setters and builder.
+
+## Publishing he `author-created` event to the Kafka 
+
+Before we can publish the event we have to create define configuration
+
+The following `./src/try/stories/src/main/resources/application.yaml` defines where to find the Kafka broker and the Kafka topic the application will be using
+
+```yaml
+kafka:
+  bootstrap-servers: localhost:9092
+  topic:
+    author-created: author-created
+```
+
+`./src/main/java/io/github/joaovicente/stories/KafkaProducerConfig.java` creates all additionally configuration required, including the serialisation method (`JsonSerializer.class`), the `ProducerFactory` and the `KafkaTemplate`
+
+```java
+package io.github.joaovicente.stories;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.core.DefaultKafkaProducerFactory;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.kafka.support.serializer.JsonSerializer;
+
+@Configuration
+public class KafkaProducerConfig {
+
+    @Value("${kafka.bootstrap-servers}")
+    private String bootstrapServers;
+
+    @Bean
+    public Map<String, Object> producerConfigs() {
+        Map<String, Object> props = new HashMap<>();
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+
+        return props;
+    }
+
+    @Bean
+    public ProducerFactory<String, AuthorCreated> producerFactory() {
+        return new DefaultKafkaProducerFactory<>(producerConfigs());
+    }
+
+    @Bean
+    public KafkaTemplate<String, AuthorCreated> kafkaTemplate() {
+        return new KafkaTemplate<>(producerFactory());
+    }
+}
+```
 
 
-## Publishing he `author-created` event to the Kafka `author-created` topic
+
+
