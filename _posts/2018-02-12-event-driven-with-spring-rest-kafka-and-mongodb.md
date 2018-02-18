@@ -44,7 +44,7 @@ and run it
 $ mvn spring-boot:run
 ```
 
-So the application runs but is does not do anything useful, so lets stop the app now (using `ctrl+C`) and let's create a `CreateAuthorController` by editing `./src/main/java/io/github/joaovicente/CreateAuthorController.java` and add  POST capabilities
+So the application runs but is does not do anything useful, so lets stop the app now (using `ctrl+C`) and let's create a `CreateAuthorController` by editing `./src/main/java/io/github/joaovicente/stories/CreateAuthorController.java` and add  POST capabilities
 
 The handler method as shown below, to expose`POST /authors`
 
@@ -66,7 +66,7 @@ public class CreateAuthorController {
 }
 ```
 
-which for the time being will simply take in a  `./src/main/java/io/github/joaovicente/CreateAuthorDto.java` (below) and return it back to the caller
+which for the time being will simply take in a  `./src/main/java/io/github/joaovicente/stories/CreateAuthorDto.java` (below) and return it back to the caller
 
 ```java
 package io.github.joaovicente.stories;
@@ -209,6 +209,3 @@ hello1
 hello2
 ~~~
 in the console your Kafka is ready to go!
-
-
-
