@@ -222,6 +222,8 @@ import lombok.Data;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class AuthorCreated {
     private String name;
     private String email;
