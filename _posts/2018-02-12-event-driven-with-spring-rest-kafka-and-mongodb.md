@@ -114,7 +114,7 @@ In an Event Driven system, a command handler would handle a command (e.g. create
 The author-created event would then be published so that subscribers can consume it.
 
 So, in the next step, after we get Kafka running, we are going to:
-1. Create the author-created event (without validating the command because we're living dangerously) 
+1. Defining the `author-created` event (without validating the command because we're living dangerously) 
 2. Produce the event into the author-created Kafka topic 
 3. Consume it back in the service (so we can then persist it later on in MongoDB)
 
@@ -230,7 +230,7 @@ public class AuthorCreated {
 
 Using `lombok` `@Data` and `@Builder` allows us to create the POJO without having to write any boiler plate code such as getters, setters and builder.
 
-## Publishing he `author-created` event to the Kafka 
+## Publishing he `author-created` event to Kafka 
 
 Before we can publish the event we have to create define configuration
 
