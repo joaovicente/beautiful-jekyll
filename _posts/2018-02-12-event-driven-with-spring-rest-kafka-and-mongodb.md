@@ -432,3 +432,14 @@ Let's re-build and run the app
 $ mvn spring-boot:run
 ```
 
+and execute the create author command
+
+```bash
+$ http POST localhost:8080/authors name=test email=test@gmail.com
+```
+
+We should now see the following in the Spring boot console
+~~~
+... author-created = AuthorCreated(name=test, email=test@gmail.com)
+~~~
+
