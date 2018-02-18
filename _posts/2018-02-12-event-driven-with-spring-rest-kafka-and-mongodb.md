@@ -289,6 +289,51 @@ public class KafkaProducerConfig {
 }
 ```
 
+Next we are going to update `./src/main/java/io/github/joaovicente/stories/CreateAuthorController.java` to create the `AuthorCreated` event, when receiving a `CreateAuthor` command (i.e. `POST /authors`) and send it through to the `author-created` topic
+
+```java
+package io.github.joaovicente.stories;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@RestController
+public class CreateAuthorController {
+    @Autowired
+    private KafkaTemplate<String, AuthorCreated> kafkaTemplate;
+    @Value("${kafka.topic.author-created}")
+    private String authorCreatedTopic;
+
+    @RequestMapping(value = "/authors", method = RequestMethod.POST)
+
+    public AuthorCreated createAuthor(@RequestBody CreateAuthorDto dto) {
+        AuthorCreated authorCreated = AuthorCreated.builder()
+                .name(dto.getName())
+                .email(dto.getEmail()).build();
+        kafkaTemplate.send(authorCreatedTopic, authorCreated);
+        return authorCreated;
+    }
+}
+```
+
+At this point the application should be producing the `author-created` event every time the `create-author` command is received.
+
+To try this it out ensure you have Kafka running (`docker-compose -f docker-compose-kafka.yml up`)
+
+And builld the application again
+
+```bash
+$ mvn spring-boot:run
+```
+
+
+
+
 
 
 
