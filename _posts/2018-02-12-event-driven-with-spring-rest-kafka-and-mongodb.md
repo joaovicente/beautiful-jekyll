@@ -325,12 +325,24 @@ At this point the application should be producing the `author-created` event eve
 
 To try this it out ensure you have Kafka running (`docker-compose -f docker-compose-kafka.yml up`)
 
-And builld the application again
+And build/run the application again
 
 ```bash
 $ mvn spring-boot:run
 ```
 
+Next issue a CreateAuthor command
+
+```bash
+$ http POST localhost:8080/authors name=joao email=joao.diogo.vicente@gmail.com
+```
+
+And you should have a message in the `author-created` Kafka topic
+
+```bash
+$ kafkacat -C -b localhost -t author-created
+{"name":"joao","email":"joao.diogo.vicente@gmail.com"}
+```
 
 
 
