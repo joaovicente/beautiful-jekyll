@@ -343,6 +343,3 @@ And you should have a message in the `author-created` Kafka topic
 $ kafkacat -C -b localhost -t author-created
 {"name":"joao","email":"joao.diogo.vicente@gmail.com"}
 ```
-
-
-
