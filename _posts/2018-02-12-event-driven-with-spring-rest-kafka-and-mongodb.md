@@ -426,4 +426,9 @@ public class KafkaReceiver {
 
 ```
 
-Let's re-run the 
+Let's re-build and run the app 
+
+```bash
+$ mvn spring-boot:run
+```
+
