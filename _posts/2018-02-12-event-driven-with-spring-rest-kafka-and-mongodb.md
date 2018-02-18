@@ -110,12 +110,12 @@ Transfer-Encoding: chunked
 
 ## Enter Kafka
 
-In an Event Driven system, a command handler would handle a command (e.g. create-author) and if validation passes it would then issue a author-created event.
+In an Event Driven system, a command handler would handle a command (e.g. create-author) and if validation passes it would then issue a `author-created` event.
 The author-created event would then be published so that subscribers can consume it.
 
-So, in the next step we are going to 
+So, in the next step, after we get Kafka running, we are going to:
 1. Create the author-created event (without validating the command because we're living dangerously) 
-2. Publish the event into the author-created Kafka topic 
+2. Produce the event into the author-created Kafka topic 
 3. Consume it back in the service (so we can then persist it later on in MongoDB)
 
 ### Setting up Kafka
@@ -209,3 +209,8 @@ hello1
 hello2
 ~~~
 in the console your Kafka is ready to go!
+
+## Creating the `author-created` event
+
+
+## Publishing he `author-created` event to the Kafka `author-created` topic
