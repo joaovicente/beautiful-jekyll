@@ -114,9 +114,9 @@ In an Event Driven system, a command handler would handle a command (e.g. create
 The author-created event would then be published so that subscribers can consume it.
 
 So, in the next step, after we get Kafka running, we are going to:
-1. Defining the `author-created` event (without validating the command because we're living dangerously) 
-2. Produce the event into the author-created Kafka topic 
-3. Consume it back in the service (so we can then persist it later on in MongoDB)
+1. Defining the `AuthorCreated` event (without validating the command because we're living dangerously) 
+2. Publish the event to the `author-created` Kafka topic 
+3. Consume '' it back in the service (so we can then persist it in MongoDB)
 
 ### Setting up Kafka
 The easiest way to get Kafka up-and-running is by using the Confluent Kafka Docker OSS images. For the purpose of this article, we're going to create the simplest Kafka deployment, which requires the [Kafka](https://hub.docker.com/r/confluentinc/cp-kafka/) and the [Zookeepeer](https://hub.docker.com/r/confluentinc/cp-zookeeper/) Docker images.
@@ -230,7 +230,7 @@ public class AuthorCreated {
 
 Using `lombok` `@Data` and `@Builder` allows us to create the POJO without having to write any boiler plate code such as getters, setters and builder.
 
-## Publishing he `author-created` event to Kafka 
+## Publishing the `author-created` event to Kafka 
 
 Before we can publish the event we have to create define configuration
 
