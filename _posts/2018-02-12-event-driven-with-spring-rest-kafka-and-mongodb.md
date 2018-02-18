@@ -345,7 +345,4 @@ $ kafkacat -C -b localhost -t author-created
 ```
 
 
-> TODO: Make Kafka Producer config/sender generic as per [this example](https://github.com/code-not-found/spring-kafka/blob/master/spring-kafka-multiple-topics/src/main/java/com/codenotfound/kafka/producer/Sender.java)
-
-
 
