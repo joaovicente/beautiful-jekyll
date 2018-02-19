@@ -325,8 +325,6 @@ Next we are going to update `./src/main/java/io/github/joaovicente/stories/Creat
 package io.github.joaovicente.stories;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -335,9 +333,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RestController
 public class CreateAuthorController {
     @Autowired
-    private KafkaTemplate<String, AuthorCreated> kafkaTemplate;
-    @Value("${kafka.topic.author-created}")
-    private String authorCreatedTopic;
+    private KafkaTopicSender sender;
+    private final String authorCreatedTopic = "author-created";
 
     @RequestMapping(value = "/authors", method = RequestMethod.POST)
 
@@ -345,7 +342,8 @@ public class CreateAuthorController {
         AuthorCreated authorCreated = AuthorCreated.builder()
                 .name(dto.getName())
                 .email(dto.getEmail()).build();
-        kafkaTemplate.send(authorCreatedTopic, authorCreated);
+
+        sender.send(authorCreatedTopic, ((Object) authorCreated));
         return authorCreated;
     }
 }
