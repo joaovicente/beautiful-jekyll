@@ -298,6 +298,27 @@ public class KafkaProducerConfig {
 }
 ```
 
+Next we create the `./src/main/java/io/github/joaovicente/stories/KafkaTopicSender.java` which will encapsulate the  payload `MessageBuilder` mechanism and the `KafkaTemplate`  
+
+```java
+package io.github.joaovicente.stories;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.support.MessageBuilder;
+
+public class KafkaTopicSender {
+    @Autowired
+    private KafkaTemplate<String, ?> kafkaTemplate;
+
+    public void send(String topic, Object payload) {
+        kafkaTemplate
+                .send(MessageBuilder.withPayload(payload).setHeader(KafkaHeaders.TOPIC, topic).build());
+    }
+}
+```
+
 Next we are going to update `./src/main/java/io/github/joaovicente/stories/CreateAuthorController.java` to create the `AuthorCreated` event, when receiving a `CreateAuthor` command (i.e. `POST /authors`) and send it through to the `author-created` topic
 
 ```java
