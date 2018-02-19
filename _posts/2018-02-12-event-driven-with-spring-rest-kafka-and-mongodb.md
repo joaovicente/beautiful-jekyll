@@ -217,18 +217,21 @@ The AuthorCreated event is the POJO which will be serialised and sent to the the
 
 ```java
 package io.github.joaovicente.stories;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.util.UUID;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthorCreated {
+    final UUID uuid = UUID.randomUUID();
     private String name;
     private String email;
-}
-```
+}```
 
 Using `lombok` `@Data` and `@Builder` allows us to create the POJO without having to write any boiler plate code such as getters, setters and builder.
 
