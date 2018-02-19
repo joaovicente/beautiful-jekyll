@@ -298,7 +298,7 @@ public class KafkaProducerConfig {
 }
 ```
 
-Next we create the `./src/main/java/io/github/joaovicente/stories/KafkaTopicSender.java` which will encapsulate the  payload `MessageBuilder` mechanism and the `KafkaTemplate`  
+Next we create the `./src/main/java/io/github/joaovicente/stories/KafkaTopicSender.java` which will encapsulate the payload `MessageBuilder` mechanism and the `KafkaTemplate`  
 
 ```java
 package io.github.joaovicente.stories;
