@@ -241,11 +241,9 @@ The following `./src/try/stories/src/main/resources/application.yaml` defines wh
 ```yaml
 kafka:
   bootstrap-servers: localhost:9092
-  topic:
-    author-created: author-created
 ```
 
-`./src/main/java/io/github/joaovicente/stories/KafkaProducerConfig.java` creates all additionally configuration required, including the serialisation method (`JsonSerializer.class`), the `ProducerFactory` and the `KafkaTemplate`
+`./src/main/java/io/github/joaovicente/stories/KafkaProducerConfig.java` creates all additionally configuration required for the Kafka Producer
 
 ```java
 package io.github.joaovicente.stories;
@@ -258,11 +256,13 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
-import org.springframework.kafka.support.serializer.JsonSerializer;
+import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 
+@EnableKafka
 @Configuration
 public class KafkaProducerConfig {
 
@@ -274,19 +274,26 @@ public class KafkaProducerConfig {
         Map<String, Object> props = new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 
         return props;
     }
 
     @Bean
-    public ProducerFactory<String, ?> producerFactory() {
+    public ProducerFactory<String, String> producerFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
 
     @Bean
-    public KafkaTemplate<String, ?> kafkaTemplate() {
-        return new KafkaTemplate<>(producerFactory());
+    public KafkaTemplate<String, String> kafkaTemplate() {
+        KafkaTemplate<String, String> template = new KafkaTemplate<>(producerFactory());
+        template.setMessageConverter(new StringJsonMessageConverter());
+        return template;
+    }
+
+    @Bean
+    KafkaTopicSender sender()   {
+        return new KafkaTopicSender();
     }
 }
 ```
@@ -442,5 +449,3 @@ We should now see the following in the Spring boot console
 ~~~
 ... author-created = AuthorCreated(name=test, email=test@gmail.com)
 ~~~
-
-
