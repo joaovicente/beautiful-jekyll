@@ -217,6 +217,7 @@ The AuthorCreated event is the POJO which will be serialised and sent to the the
 
 ```java
 package io.github.joaovicente.stories;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
