@@ -473,3 +473,4 @@ We should now see the following in the Spring boot console
 ~~~
 ... author-created event received: AuthorCreated(name=test, email=test@gmail.com)
 ~~~
+
