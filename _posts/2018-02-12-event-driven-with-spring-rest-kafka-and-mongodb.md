@@ -474,3 +474,6 @@ We should now see the following in the Spring boot console
 ... author-created event received: AuthorCreated(name=test, email=test@gmail.com)
 ~~~
 
+So, next we are going to bring-in MongoDB to persist the Author when it is created.
+
+## Enter MongoDB
