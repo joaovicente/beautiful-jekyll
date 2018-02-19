@@ -243,7 +243,7 @@ kafka:
   bootstrap-servers: localhost:9092
 ```
 
-`./src/main/java/io/github/joaovicente/stories/KafkaProducerConfig.java` creates all additionally configuration required for the Kafka Producer
+`./src/main/java/io/github/joaovicente/stories/KafkaProducerConfig.java` creates all additionally configuration required for the Kafka Producer.
 
 ```java
 package io.github.joaovicente.stories;
