@@ -324,12 +324,14 @@ Next we are going to update `./src/main/java/io/github/joaovicente/stories/Creat
 ```java
 package io.github.joaovicente.stories;
 
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+@Log
 @RestController
 public class CreateAuthorController {
     @Autowired
@@ -339,11 +341,13 @@ public class CreateAuthorController {
     @RequestMapping(value = "/authors", method = RequestMethod.POST)
 
     public AuthorCreated createAuthor(@RequestBody CreateAuthorDto dto) {
+        log.info("create-author command received: " + dto.toString());
         AuthorCreated authorCreated = AuthorCreated.builder()
                 .name(dto.getName())
                 .email(dto.getEmail()).build();
 
         sender.send(authorCreatedTopic, ((Object) authorCreated));
+        log.info("author-created event transmitted: " + authorCreated.toString());
         return authorCreated;
     }
 }
@@ -379,9 +383,6 @@ First we are going to create the `./src/main/java/io/github/joaovicente/stories/
 ```java
 package io.github.joaovicente.stories;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -391,7 +392,10 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-import org.springframework.kafka.support.serializer.JsonDeserializer;
+import org.springframework.kafka.support.converter.StringJsonMessageConverter;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 @EnableKafka
@@ -405,36 +409,36 @@ public class KafkaConsumerConfig {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "my-group-id");
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "group-id");
 
         return props;
     }
 
     @Bean
-    public ConsumerFactory<String, AuthorCreated> consumerFactory() {
-        return new DefaultKafkaConsumerFactory<>(
-                consumerConfigs(),
-                new StringDeserializer(),
-                new JsonDeserializer<>(AuthorCreated.class));
+    public ConsumerFactory<String, String> consumerFactory() {
+        return new DefaultKafkaConsumerFactory<>(consumerConfigs(), new StringDeserializer(),
+                new StringDeserializer());
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, AuthorCreated> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, AuthorCreated> factory =
+    public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, String> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
+        factory.setMessageConverter(new StringJsonMessageConverter());
+
         return factory;
     }
 
     @Bean
-    public KafkaReceiver receiver() {
-        return new KafkaReceiver();
+    public KafkaTopicReceiver receiver() {
+        return new KafkaTopicReceiver();
     }
 }
 ```
 
-Next we create `./src/main/java/io/github/joaovicente/stories/KafkaReceiver.java`
+Next we create `./src/main/java/io/github/joaovicente/stories/KafkaTopicReceiver.java`
 
 ```java
 package io.github.joaovicente.stories;
@@ -443,13 +447,14 @@ import lombok.extern.java.Log;
 import org.springframework.kafka.annotation.KafkaListener;
 
 @Log
-public class KafkaReceiver {
-    @KafkaListener(topics = "author-created")
-    public void receive(AuthorCreated author) {
-        log.info("author-created = " + author.toString());
+public class KafkaTopicReceiver {
+    private final String authorCreatedTopic = "author-created";
+
+    @KafkaListener(topics = authorCreatedTopic)
+    public void receive(AuthorCreated authorCreated) {
+        log.info("author-created event received: " + authorCreated.toString());
     }
 }
-
 ```
 
 Let's re-build and run the app 
