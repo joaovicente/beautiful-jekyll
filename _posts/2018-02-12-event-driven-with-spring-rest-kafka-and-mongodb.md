@@ -749,10 +749,10 @@ Transfer-Encoding: chunked
     "id": "b5c220e4-8a15-41aa-b667-ae3a34e32593", 
     "name": "me"
 }
-``
+```
 
 And hereby ends the illustration of the main building blocks to make up an event driven Spring Boot service.
 
-In the next post
+That's all folks. In the next post I'll tidy up the code, organizing it into packages
 
 
