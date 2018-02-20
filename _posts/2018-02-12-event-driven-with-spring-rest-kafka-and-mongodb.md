@@ -597,5 +597,27 @@ The mongo CLI is very handy to inspect DBs and collections. you can type `help` 
 	exit                         quit the mongo shell
 ~~~
 
-Now that we have MongoDB up and running, let's create 
+Now that we have MongoDB up and running, let's create the `./src/main/java/io/github/joaovicente/stories/Author.java` entity 
+
+```java
+package io.github.joaovicente.stories;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+
+import java.util.UUID;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class Author {
+    @Id
+    private UUID id;
+    private String name;
+    private String email;
+}
+```
 
