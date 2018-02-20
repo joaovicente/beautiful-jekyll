@@ -676,7 +676,7 @@ public class KafkaTopicReceiver {
 }
 ```
 
-> We should really not access the persistency layer inside the topic receiver, but do so in  services, but we're cutting corners here for brevity and simplicity.
+> We should really not access the persistency layer inside the topic receiver, but hey, I've stopped counting transgressions at this point, and I am pinning it all on brevity and simplicity, because it's only rock'n'roll and I like it!
 
 So at this point we're persisting the Author entity into MongoDB, so it makes sense to retrieve it back via `GET /authors/{authorId}`, so let's write a AuthorQuery controller to do so
 
