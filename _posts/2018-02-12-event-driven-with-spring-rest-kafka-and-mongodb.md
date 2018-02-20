@@ -121,6 +121,8 @@ So, in the next step, after we get Kafka running, we are going to:
 ### Setting up Kafka
 The easiest way to get Kafka up-and-running is by using the Confluent Kafka Docker OSS images. For the purpose of this article, we're going to create the simplest Kafka deployment, which requires the [Kafka](https://hub.docker.com/r/confluentinc/cp-kafka/) and the [Zookeepeer](https://hub.docker.com/r/confluentinc/cp-zookeeper/) Docker images.
 
+> You will need to have Docker and Docker Compose installed on your host to continue. If you don't have it already, follow the [Install Docker Compose documentation](https://docs.docker.com/compose/install/)
+
 Now let's create a `docker-compose-kafka.yml` Docker Compose file which we are going to use to bring-up Kafka.
 
 ```yaml
@@ -755,4 +757,4 @@ And hereby ends the illustration of the main building blocks to make up an event
 
 That's all folks. In the next post I'll tidy up the code, organizing it into more organized packages and aim at introducing some built-in observability, as otherwise it is hard to understand what is going on, as pretty much everything is asynchronous.
 
-
+You can find this code in 
