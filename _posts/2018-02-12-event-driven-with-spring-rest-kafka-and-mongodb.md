@@ -544,3 +544,14 @@ services:
       - "27017:27017"
     command: mongod --smallfiles
 ```
+
+When you start execute the docker-compose
+
+```bash
+$ docker-compose -f docker-compose-kafka-mongo.yml up
+```
+
+You should now see log entries for `mongodb_1` service
+
+
+
