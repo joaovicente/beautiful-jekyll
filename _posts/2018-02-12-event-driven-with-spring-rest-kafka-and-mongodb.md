@@ -10,9 +10,9 @@ The aim of this post is to illustrate how to build a simple Event Driven applica
 
 In this post we'll pretend we are creating a Story editing web application, where authors can create their account and then create stories.
 
-Well, it may take a while until we get to create stories, as the focus really is to get hands on experience in building an Event Driven system using the building blocks described above, using Spring Boot, Docker, and later on explore how we can build observabiliy into the system
+Well, it may take a while until we get to create stories, as the focus really is to get hands on experience in building an Event Driven system using the building blocks described above, using Spring Boot, Docker, and on a later post we will build observabiliy into the application.
 
-I'll throw in a few tooling goodies along the way, which should make life easier. 
+I'll throw in a few tooling goodies along the way (e.g. `lombok`, `httpie`, `kafkacat`) which should make life easier. 
 
 Enough chat, time for sleeve rolling
 
@@ -751,7 +751,8 @@ Transfer-Encoding: chunked
 }
 ``
 
-Magic!
+And hereby ends the illustration of the main building blocks to make up an event driven Spring Boot service.
 
+In the next post
 
 
