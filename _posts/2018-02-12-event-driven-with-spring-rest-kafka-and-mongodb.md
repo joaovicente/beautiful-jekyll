@@ -128,6 +128,7 @@ Now let's create a `docker-compose-kafka.yml` Docker Compose file which we are g
 version: '2'
 services:
   zookeeper:
+    container_name: zookeeper
     image: "confluentinc/cp-zookeeper:4.0.0"
     hostname: zookeeper
     ports:
@@ -139,6 +140,7 @@ services:
       - "moby:127.0.0.1"
 
   kafka:
+    container_name: kafka
     image: "confluentinc/cp-kafka:4.0.0"
     hostname: kafka
     ports:
@@ -496,6 +498,7 @@ Now add the MongoDB image to the yml
 ```yaml
 ...
   mongodb:
+    container_name: mongodb
     image: mongo:3.0.4
     ports:
       - "27017:27017"
@@ -509,6 +512,7 @@ So `docker-compose-kafka-mongo.yml` should now look like this
 version: '2'
 services:
   zookeeper:
+    container_name: zookeeper
     image: "confluentinc/cp-zookeeper:4.0.0"
     hostname: zookeeper
     ports:
@@ -520,6 +524,7 @@ services:
       - "moby:127.0.0.1"
 
   kafka:
+    container_name: kafka
     image: "confluentinc/cp-kafka:4.0.0"
     hostname: kafka
     ports:
@@ -539,6 +544,7 @@ services:
       - "moby:127.0.0.1"
 
   mongodb:
+    container_name: mongodb
     image: mongo:3.0.4
     ports:
       - "27017:27017"
