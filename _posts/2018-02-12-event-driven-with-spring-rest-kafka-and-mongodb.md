@@ -685,7 +685,7 @@ So at this point we're persisting the Author entity into MongoDB, so it makes se
 
 Here's `./src/main/java/io/github/joaovicente/stories/AuthorQueryController.java`
 
-```java ./src/main/java/io/github/joaovicente/stories/AuthorQueryController.java
+```java
 package io.github.joaovicente.stories;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
