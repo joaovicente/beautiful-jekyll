@@ -223,7 +223,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 import java.util.UUID;
 
@@ -232,7 +231,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthorCreated {
-    @Id
     final UUID uuid = UUID.randomUUID();
     private String name;
     private String email;
