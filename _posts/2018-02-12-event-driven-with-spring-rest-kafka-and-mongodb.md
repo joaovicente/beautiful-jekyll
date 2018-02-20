@@ -592,6 +592,8 @@ The mongo CLI is very handy to inspect DBs and collections. you can type `help` 
 	exit                         quit the mongo shell
 ~~~
 
+> To inspect the `author` MongoDB collection we'll create shortly, as we create the `AuthorRepository` you should
+
 Now that we have MongoDB up and running, let's create the `./src/main/java/io/github/joaovicente/stories/Author.java` entity 
 
 ```java
