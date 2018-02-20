@@ -706,4 +706,52 @@ public class AuthorQueryController {
 }
 ```
 
+Now, let's give it a spin, by starting docker-compose (unless you still have it running)
+
+```bash
+$ docker-compose -f docker-compose-kafka-mongo.yml up
+```
+
+Run the Spring Boot app
+
+```bash
+$ mvn spring-boot:run
+```
+
+Now create a new Author
+
+```bash
+$ http post localhost:8080/authors name=me email=me@gmail.com
+HTTP/1.1 200 
+Content-Type: application/json;charset=UTF-8
+Date: Tue, 20 Feb 2018 22:43:50 GMT
+Transfer-Encoding: chunked
+
+{
+    "email": "me@gmail.com", 
+    "id": "b5c220e4-8a15-41aa-b667-ae3a34e32593", 
+    "name": "me"
+}
+
+```
+
+Now we should be able to `GET` by `id`
+
+```bash
+$ http get localhost:8080/authors/b5c220e4-8a15-41aa-b667-ae3a34e32593
+HTTP/1.1 200 
+Content-Type: application/json;charset=UTF-8
+Date: Tue, 20 Feb 2018 22:45:07 GMT
+Transfer-Encoding: chunked
+
+{
+    "email": "me@gmail.com", 
+    "id": "b5c220e4-8a15-41aa-b667-ae3a34e32593", 
+    "name": "me"
+}
+``
+
+Magic!
+
+
 
