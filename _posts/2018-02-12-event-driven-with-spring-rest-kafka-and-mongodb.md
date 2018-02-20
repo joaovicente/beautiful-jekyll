@@ -231,7 +231,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthorCreated {
-    final UUID id = UUID.randomUUID();
+    private final UUID id = UUID.randomUUID();
     private String name;
     private String email;
 }
