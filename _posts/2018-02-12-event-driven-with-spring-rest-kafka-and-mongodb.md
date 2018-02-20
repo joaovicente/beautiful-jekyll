@@ -557,7 +557,21 @@ When you start execute the docker-compose
 $ docker-compose -f docker-compose-kafka-mongo.yml up
 ```
 
-You should now see log entries for `mongodb_1` service
+You should now see log entries for `mongodb` service
+
+And now you should be able to access the mongodb container bash as follows
+
+```bash
+$ docker exec -it mongodb bash
+```
+
+And start the mongo CLI 
+
+```bash
+# mongo
+```
+
+The mongo CLI is very handy to inspect DBs and collections. you can type `help` to find some useful commands
 
 
 
