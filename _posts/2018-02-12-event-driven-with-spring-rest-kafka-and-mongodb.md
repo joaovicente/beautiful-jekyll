@@ -678,7 +678,7 @@ public class KafkaTopicReceiver {
 
 > We should really not access the persistency layer inside the topic receiver, but hey, I've stopped counting transgressions at this point, and I am pinning it all on brevity and simplicity, because [it's only rock'n'roll, but I like it!](https://www.youtube.com/watch?v=JGaBlygm0UY)
 
-So at this point we're persisting the Author entity into MongoDB, so it makes sense to retrieve it back via `GET /authors/{authorId}`, so let's write a AuthorQuery controller to do so
+So at this point we're persisting the Author entity into MongoDB, so it makes sense to retrieve it back via `GET /authors/{authorId}`, so let's write an `AuthorQueryController` to do so
 
 Here's `./src/main/java/io/github/joaovicente/stories/AuthorQueryController.java`
 
