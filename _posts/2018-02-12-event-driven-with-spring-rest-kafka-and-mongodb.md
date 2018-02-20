@@ -753,6 +753,6 @@ Transfer-Encoding: chunked
 
 And hereby ends the illustration of the main building blocks to make up an event driven Spring Boot service.
 
-That's all folks. In the next post I'll tidy up the code, organizing it into packages
+That's all folks. In the next post I'll tidy up the code, organizing it into more organized packages and aim at introducing some built-in observability, as otherwise it is hard to understand what is going on, as pretty much everything is asynchronous.
 
 
