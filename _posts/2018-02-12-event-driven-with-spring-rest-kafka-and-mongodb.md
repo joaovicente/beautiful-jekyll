@@ -550,7 +550,7 @@ When you start execute the docker-compose
 $ docker-compose -f docker-compose-kafka-mongo.yml up
 ```
 
-You should now see log entries for `mongodb` service
+you should see log entries for `mongodb` service
 
 And now you should be able to access the mongodb container bash as follows
 
