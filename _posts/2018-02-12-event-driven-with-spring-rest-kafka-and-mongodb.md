@@ -633,5 +633,21 @@ public interface AuthorRepository extends MongoRepository<Author, String> {
 
 nearly there ...
 
-now let's go back to 
+now we'll wire the MongoRepository to `/home/jvicente/src/try/stories/src/main/java/io/github/joaovicente/stories/KafkaTopicReceiver.java` 
+
+```java
+    @Autowired
+    AuthorRepository authorRepository;
+```
+
+and construct and persist the Author entity when the KafkaReceiver receives the `AuthorCreated` event.
+
+```java
+        Author author = Author.builder()
+                .id(authorCreated.getId().toString())
+                .email(authorCreated.getEmail())
+                .name(authorCreated.getName())
+                .build();
+        authorRepository.insert(author);
+```
 
