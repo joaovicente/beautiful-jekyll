@@ -703,7 +703,7 @@ public class AuthorQueryController {
 }
 ```
 
-Now, let's give it a spin, by starting docker-compose (unless you still have it running)
+Now, let's give it a spin, by starting docker-compose (unless you still have it running, you wild thing!)
 
 ```bash
 $ docker-compose -f docker-compose-kafka-mongo.yml up
