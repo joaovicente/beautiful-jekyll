@@ -256,10 +256,8 @@ kafka:
 
 ```java
 package io.github.joaovicente.stories;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -311,7 +309,6 @@ Next we create the `./src/main/java/io/github/joaovicente/stories/KafkaTopicSend
 
 ```java
 package io.github.joaovicente.stories;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -332,7 +329,6 @@ Next we are going to update `./src/main/java/io/github/joaovicente/stories/Creat
 
 ```java
 package io.github.joaovicente.stories;
-
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -391,7 +387,6 @@ First we are going to create the `./src/main/java/io/github/joaovicente/stories/
 
 ```java
 package io.github.joaovicente.stories;
-
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -451,7 +446,6 @@ Next we create `./src/main/java/io/github/joaovicente/stories/KafkaTopicReceiver
 
 ```java
 package io.github.joaovicente.stories;
-
 import lombok.extern.java.Log;
 import org.springframework.kafka.annotation.KafkaListener;
 
