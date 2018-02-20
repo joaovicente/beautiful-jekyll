@@ -162,7 +162,7 @@ services:
       - "moby:127.0.0.1"
 ```
 
-There is a useful command line utility called [kafkacat](https://github.com/edenhill/kafkacat) which is handy to interact with Kafka, for example, to pulish and consume messages from topics
+There is a useful command line utility called [kafkacat](https://github.com/edenhill/kafkacat) which is handy to interact with Kafka, for example, to publish and consume messages from topics
 
 Under linux Kafkacat can be installed using
 
