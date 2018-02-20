@@ -615,7 +615,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Author {
     @Id
-    private UUID id;
+    private String id;
     private String name;
     private String email;
 }
