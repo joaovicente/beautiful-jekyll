@@ -173,6 +173,8 @@ $ sudo apt-get install kafkacat
 $ docker-compose -f docker-compose-kafka.yml up
 ```
 
+> When you want to stop the containers define in the compose file `Ctrl+C` is not enough. To bring them down fully, you will need to run the inverse `down` command: `docker-compose -f docker-compose-kafka.yml up`
+
 ### Test Kafka
 
 check the kafka broker is listening and has no topics
