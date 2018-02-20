@@ -625,12 +625,13 @@ and the MongoRepository `./src/main/java/io/github/joaovicente/stories/AuthorRep
 
 ```java
 package io.github.joaovicente.stories;
-
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public class AuthorRepository {
-    public interface AuthorRepository extends MongoRepository<Author, String> {
-    }    
+public interface AuthorRepository extends MongoRepository<Author, String> {
 }
 ```
+
+nearly there ...
+
+now let's go back to 
 
