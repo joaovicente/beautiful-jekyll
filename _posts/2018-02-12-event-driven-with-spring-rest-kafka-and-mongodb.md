@@ -568,7 +568,7 @@ $ docker exec -it mongodb bash
 And start the mongo CLI 
 
 ```bash
-# mongo
+$ mongo
 ```
 
 The mongo CLI is very handy to inspect DBs and collections. you can type `help` to find some useful commands
