@@ -3,10 +3,7 @@ layout: post
 title: 'Event driven with Spring REST, Kafka and MongoDB'
 published: true
 ---
-The aim of this post is to illustrate how to build a simple Event Driven application using: 
-* Spring REST
-* Kafka
-* MongoDB
+The aim of this post is to do a study on building a very simple Event Driven application using Spring REST, Kafka and MongoDB
 
 In this post we'll pretend we are creating a Story editing web application, where authors can create their account and then create stories.
 
