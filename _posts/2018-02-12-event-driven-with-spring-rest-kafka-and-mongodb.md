@@ -751,4 +751,4 @@ And hereby ends the illustration of the main building blocks to make up an event
 
 That's all folks. In the next post I'll tidy up the code, organizing it into more organized packages and aim at introducing some built-in observability, as otherwise it is hard to understand what is going on, as pretty much everything is asynchronous.
 
-You can find this code in 
+You can find this code in https://github.com/joaovicente/stories-part-1
