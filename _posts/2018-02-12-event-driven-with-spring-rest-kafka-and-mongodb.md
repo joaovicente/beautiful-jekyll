@@ -679,4 +679,30 @@ public class KafkaTopicReceiver {
 }
 ```
 
+> We should really not access the persistency layer inside the topic receiver, but do so in  services, but we're cutting corners here for brevity and simplicity.
+
+So at this point we're persisting the Author entity into MongoDB, so it makes sense to retrieve it back via `GET /authors/{authorId}`, so let's write a AuthorQuery controller to do so
+
+Here's `./src/main/java/io/github/joaovicente/stories/AuthorQueryController.java`
+
+```java ./src/main/java/io/github/joaovicente/stories/AuthorQueryController.java
+package io.github.joaovicente.stories;
+import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@Log
+@RestController
+public class AuthorQueryController {
+    @Autowired
+    private AuthorRepository authorRepository;
+
+    @RequestMapping(value = "/authors/{authorId}", method = RequestMethod.GET)
+    public Author createAuthor(@PathVariable String authorId) {
+        log.info("author query by id : " + authorId);
+        Author author = authorRepository.findOne(authorId);
+        return author;
+    }
+}
+```
 
