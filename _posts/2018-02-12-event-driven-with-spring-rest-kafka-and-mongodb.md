@@ -599,5 +599,5 @@ The mongo CLI is very handy to inspect DBs and collections. you can type `help` 
 	exit                         quit the mongo shell
 ~~~
 
-
+Now that we have MongoDB up and running, let's create 
 
