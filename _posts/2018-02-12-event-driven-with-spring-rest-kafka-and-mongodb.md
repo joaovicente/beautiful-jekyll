@@ -41,6 +41,8 @@ and run it
 $ mvn spring-boot:run
 ```
 
+> You'll see MongoDB connection error at this point, because we don't have MongoDB running yet, so we'll ignore this error for now.
+
 So the application runs but is does not do anything useful, so lets stop the app now (using `ctrl+C`) and let's create a `CreateAuthorController` by editing `./src/main/java/io/github/joaovicente/stories/CreateAuthorController.java` and add  POST capabilities
 
 The handler method as shown below, to expose`POST /authors`
@@ -63,7 +65,7 @@ public class CreateAuthorController {
 }
 ```
 
-which for the time being will simply take in a  `./src/main/java/io/github/joaovicente/stories/CreateAuthorDto.java` (below) and return it back to the caller
+which for the time being will simply take in a `CreateAuthorDto`, in `./src/main/java/io/github/joaovicente/stories/CreateAuthorDto.java` and return it back to the caller
 
 ```java
 package io.github.joaovicente.stories;
@@ -107,11 +109,11 @@ Transfer-Encoding: chunked
 
 ## Enter Kafka
 
-In an Event Driven system, a command handler would handle a command (e.g. create-author) and if validation passes it would then issue a `author-created` event.
-The author-created event would then be published so that subscribers can consume it.
+In an Event Driven system, a command handler would handle a command (e.g. `CreateAuthor`) and if validated it would then issue a `author-created` event.
+The `AuthorCreated` event would then be published so that subscribers can consume it and do useful things with it.
 
 So, in the next step, after we get Kafka running, we are going to:
-1. Defining the `AuthorCreated` event (without validating the command because we're living dangerously) 
+1. Define the `AuthorCreated` event (without validating the command because we're living dangerously) 
 2. Publish the event to the `author-created` Kafka topic 
 3. Consume `author-created` it back in the service (so we can then persist it in MongoDB)
 
@@ -173,7 +175,7 @@ $ sudo apt-get install kafkacat
 $ docker-compose -f docker-compose-kafka.yml up
 ```
 
-> When you want to stop the containers define in the compose file `Ctrl+C` is not enough. To bring them down fully, you will need to run the inverse `down` command: `docker-compose -f docker-compose-kafka.yml up`
+> When you want to stop the containers define in the compose file `Ctrl+C` is not enough. To bring them down fully, you will need to run the inverse `down` command: `docker-compose -f docker-compose-kafka.yml down`
 
 ### Test Kafka
 
@@ -198,7 +200,7 @@ $ kafkacat -P -b localhost -t greeting
 hello1
 hello2
 ```
-exit using `Ctrl+C`
+exit using `Ctrl+C` followed by `Return`
 
 now consume the messages from `greeting` topic
 
@@ -206,12 +208,12 @@ now consume the messages from `greeting` topic
 $ kafkacat -C -b localhost -t greeting
 ```
 
-if you see
+if you see the following in the console your Kafka is ready to go!
 ~~~
 hello1
 hello2
 ~~~
-in the console your Kafka is ready to go!
+
 
 ## Defining the AuthorCreated event
 The AuthorCreated event is the POJO which will be serialised and sent to the the `author-created` Kafka topic
@@ -220,6 +222,7 @@ The AuthorCreated event is the POJO which will be serialised and sent to the the
 
 ```java
 package io.github.joaovicente.stories;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -239,12 +242,13 @@ public class AuthorCreated {
 ```
 
 Using `lombok` `@Data` and `@Builder` allows us to create the POJO without having to write any boiler plate code such as getters, setters and builder.
+We are also auto-generating an `id` of the `Author`.
 
 ## Publishing the `author-created` event to Kafka 
 
 Before we can publish the event we have to create define configuration
 
-The following `./src/try/stories/src/main/resources/application.yaml` defines where to find the Kafka broker and the Kafka topic the application will be using
+The following `./src/main/resources/application.yaml` defines where to find the Kafka broker and the Kafka topic the application will be using
 
 ```yaml
 kafka:
