@@ -122,7 +122,7 @@ The easiest way to get Kafka up-and-running is by using the Confluent Kafka Dock
 
 > You will need to have Docker and Docker Compose installed on your host to continue. If you don't have it already, have a look in [Install Docker Compose documentation](https://docs.docker.com/compose/install)
 
-Now let's create a `docker-compose-kafka.yml` Docker Compose file which we are going to use to bring-up Kafka.
+Now let's create a `../docker-compose-kafka.yml` Docker Compose file which we are going to use to bring-up Kafka.
 
 ```yaml
 ---
@@ -172,10 +172,10 @@ $ sudo apt-get install kafkacat
 ### Start Kafka
 
 ```bash
-$ docker-compose -f docker-compose-kafka.yml up
+$ docker-compose -f ../docker-compose-kafka.yml up
 ```
 
-> When you want to stop the containers define in the compose file `Ctrl+C` is not enough. To bring them down fully, you will need to run the inverse `down` command: `docker-compose -f docker-compose-kafka.yml down`
+> When you want to stop the containers define in the compose file `Ctrl+C` is not enough. To bring them down fully, you will need to run the inverse `down` command: `docker-compose -f ../docker-compose-kafka.yml down`
 
 ### Test Kafka
 
@@ -259,8 +259,10 @@ kafka:
 
 ```java
 package io.github.joaovicente.stories;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -312,6 +314,7 @@ Next we create the `./src/main/java/io/github/joaovicente/stories/KafkaTopicSend
 
 ```java
 package io.github.joaovicente.stories;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -328,11 +331,13 @@ public class KafkaTopicSender {
 }
 ```
 
-Next we are going to update `./src/main/java/io/github/joaovicente/stories/CreateAuthorController.java` to create the `AuthorCreated` event, when receiving a `CreateAuthor` command (i.e. `POST /authors`) and send it through to the `author-created` topic
+and we now update `./src/main/java/io/github/joaovicente/stories/CreateAuthorController.java` to create the `AuthorCreated` event, when receiving a `CreateAuthor` command (i.e. `POST /authors`) and send it through to the `author-created` topic
 
 ```java
 package io.github.joaovicente.stories;
+
 import lombok.extern.java.Log;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -363,7 +368,7 @@ public class CreateAuthorController {
 
 At this point the application should be producing the `author-created` event every time the `create-author` command is received.
 
-To try this it out ensure you have Kafka running (`docker-compose -f docker-compose-kafka.yml up`)
+To try this it out ensure you still have Kafka running (rememeber ... `docker-compose -f ../docker-compose-kafka.yml up`) 
 
 And build/run the application again
 
@@ -381,7 +386,7 @@ And you should have a message in the `author-created` Kafka topic
 
 ```bash
 $ kafkacat -C -b localhost -t author-created
-{"name":"joao","email":"joao.diogo.vicente@gmail.com"}
+{"id":"67d6fd66-9f0c-47d9-9302-a19773644a85","name":"joao","email":"joao.diogo.vicente@gmail.com"}
 ```
 
 ## Consume `author-created`
@@ -390,8 +395,10 @@ First we are going to create the `./src/main/java/io/github/joaovicente/stories/
 
 ```java
 package io.github.joaovicente.stories;
+
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -449,6 +456,7 @@ Next we create `./src/main/java/io/github/joaovicente/stories/KafkaTopicReceiver
 
 ```java
 package io.github.joaovicente.stories;
+
 import lombok.extern.java.Log;
 import org.springframework.kafka.annotation.KafkaListener;
 
@@ -477,7 +485,7 @@ $ http POST localhost:8080/authors name=test email=test@gmail.com
 
 We should now see the following in the Spring boot console
 ~~~
-... author-created event received: AuthorCreated(name=test, email=test@gmail.com)
+... author-created event received: AuthorCreated(id=37c2fed9-8181-4a4a-bbe6-122c16e752d1, name=test, email=test@gmail.com)
 ~~~
 
 So, next we are going to bring-in MongoDB to persist the Author when it is created.
@@ -487,7 +495,7 @@ So, next we are going to bring-in MongoDB to persist the Author when it is creat
 First let's enhance our compose file to include a MongoDB service
 
 ```bash
-$ cp docker-compose-kafka.yml docker-compose-kafka-mongo.yml
+$ cp ../docker-compose-kafka.yml ../docker-compose-kafka-mongo.yml
 ```
 
 Now add the MongoDB image to the yml
@@ -551,7 +559,7 @@ services:
 When you start execute the docker-compose
 
 ```bash
-$ docker-compose -f docker-compose-kafka-mongo.yml up
+$ docker-compose -f ../docker-compose-kafka-mongo.yml up
 ```
 
 you should see log entries for `mongodb` service.
@@ -602,10 +610,12 @@ Now that we have MongoDB up and running, let's create the `./src/main/java/io/gi
 
 ```java
 package io.github.joaovicente.stories;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import org.springframework.data.annotation.Id;
 
 import java.util.UUID;
@@ -626,6 +636,7 @@ and the MongoRepository `./src/main/java/io/github/joaovicente/stories/AuthorRep
 
 ```java
 package io.github.joaovicente.stories;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface AuthorRepository extends MongoRepository<Author, String> {
@@ -688,7 +699,9 @@ Here's `./src/main/java/io/github/joaovicente/stories/AuthorQueryController.java
 
 ```java
 package io.github.joaovicente.stories;
+
 import lombok.extern.java.Log;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
