@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Event driven with Spring REST, Kafka and MongoDB'
+title: 'Event driven with Spring REST, Kafka and MongoDB - part 1'
 published: true
 ---
 The aim of this post is to do a study on building a very simple Event Driven application using Spring REST, Kafka and MongoDB
