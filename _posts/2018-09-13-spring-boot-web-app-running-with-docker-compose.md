@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: Spring  Boot web app running with Docker Compose
 ---
 In this post I am going to get a Docker image running using Docker Compose
@@ -43,8 +43,3 @@ Transfer-Encoding: chunked
     "status": 404, 
     "timestamp": "2018-09-13T11:03:26.805+0000"
 }
-
-
-
-
-
