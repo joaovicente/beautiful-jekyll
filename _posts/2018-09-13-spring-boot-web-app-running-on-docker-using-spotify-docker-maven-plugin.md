@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: Spring Boot web app running on Docker using Spotify Docker Maven plugin
 ---
 In this post I am just going to get a Spring Boot web app running on docker using the [Spotify Maven plugin](https://github.com/spotify/docker-maven-plugin)
