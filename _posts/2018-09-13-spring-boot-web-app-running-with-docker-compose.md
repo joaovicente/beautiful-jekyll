@@ -10,7 +10,7 @@ In this post I am going to get a Docker image running using Docker Compose
 This post requires a `joaovicente/demo:latest Docker` image which can be created by following instructions in the 
 [Spring Boot web app running on Docker](https://joaovicente.github.io/2018-09-13-spring-boot-web-app-running-on-docker-using-spotify-docker-maven-plugin/) post
 
-Docker Compose looks for a `docker-compose.yml` file in your current directory
+Docker Compose looks for a `docker-compose.yaml` file in your current directory
 
 So create one with the equivalent content to `docker run -p 8080:8080 joaovicente/demo`
 
