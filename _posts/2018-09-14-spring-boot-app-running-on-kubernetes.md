@@ -75,8 +75,17 @@ $ kubectl create -f demo-deployment.yaml"
 
 ## Run the service
 ```
-// FIXME: cannot connect via 
 $ kubectl create -f demo-service.yaml"
+```
+
+## Test the service
+```
+$ kubectl get services
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+demo         ClusterIP   10.106.18.44   <none>        8080/TCP   12s
+kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP    2d
+$ http localhost:8080
+// FIXME: cannot connect via   
 ```
 
 
@@ -125,4 +134,4 @@ http http://localhost:5000/v2/demo/manifests/latest 'Accept: application/vnd.doc
 
 
 
-docker run -d -p 5000:5000 -e "REGISTRY_STORAGE_DELETE_ENABLED=true" --restart=always --name registry registry:2 
+docker run -d -p 5000:5000 -e "REGISTRY_STORAGE_DELETE_ENABLED=true" --restart=always --name registry registry:2
