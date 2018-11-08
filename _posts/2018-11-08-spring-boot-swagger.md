@@ -3,6 +3,7 @@ layout: post
 published: true
 title: Spring Boot Swagger
 tags: spring swagger
+image: 'https://joaovicente.github.io/img/swagger-ui.png'
 ---
 ## 1. Create a Spring Boot Swagger with Web dependency
 
