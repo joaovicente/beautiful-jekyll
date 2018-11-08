@@ -104,3 +104,8 @@ $ curl http://localhost:8080/v2/api-docs
 And be able to interact with swagger-ui at http://localhost:8080/swagger-ui.html as shown below
 
 ![swagger-ui.png]({{site.baseurl}}/img/swagger-ui.png)
+
+### References
+For more comprehensive guides see 
+* [Setting Up Swagger 2 with a Spring REST API](https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api)
+* [Spring Boot RESTful API Documentation With Swagger 2](https://dzone.com/articles/spring-boot-restful-api-documentation-with-swagger)
