@@ -89,6 +89,8 @@ public class SwaggerConfig {
 }
 ```
 
+## 3. Profit!
+
 After running the app again (`mvn spring-boot:run`) you should be able to get Swagger JSON describing the API
 
 ```
