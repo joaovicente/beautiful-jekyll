@@ -1,6 +1,6 @@
 ---
 layout: post
-published: true
+published: false
 title: Spring Boot Swagger
 tags: spring swagger
 ---
