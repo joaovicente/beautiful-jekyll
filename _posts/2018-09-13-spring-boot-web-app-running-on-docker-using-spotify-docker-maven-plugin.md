@@ -4,7 +4,7 @@ published: true
 title: Spring Boot web app running on Docker using Spotify Docker Maven plugin
 tags: spring docker
 ---
-In this post I am just going to get a Spring Boot web app running on docker using the [Spotify Maven plugin](https://github.com/spotify/docker-maven-plugin)
+Get a Spring Boot web app running on docker using the [Spotify Maven plugin](https://github.com/spotify/docker-maven-plugin)
 
 > Assumes you have [httpie](https://httpie.org/) installed
 
