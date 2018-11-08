@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class SampleController {
-    @RequestMapping(value="/sample", method=RequestMethod.GET)
+    @RequestMapping(value="/api/sample", method=RequestMethod.GET)
     public String sample()   {
         return "Sample!\n";
     }
@@ -45,5 +45,55 @@ $curl http://localhost:8080/sample
 Sample!
 ```
 
-## 2. Add dependencies required to expose Swagger
+## 2. Configure application to expose Swagger
 
+Add springfox dependencies to the `pom.xml`
+
+```
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger2</artifactId>
+    <version>2.6.1</version>
+</dependency>
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger-ui</artifactId>
+    <version>2.6.1</version>
+</dependency>
+```
+
+Add SwaggerConfig to the app in `./src/main/java/io/github/joaovicente/springbootswagger/SwaggerConfig.java`
+
+```
+package io.github.joaovicente.springbootswagger;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+@Configuration
+@EnableSwagger2
+public class SwaggerConfig {
+    @Bean
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.regex("/api.*"))
+                .build();
+    }
+}
+```
+
+After running the app again (`mvn spring-boot:run`) you should be able to get Swagger JSON describing the API
+
+```
+$ curl http://localhost:8080/v2/api-docs
+{"swagger":"2.0","info":{"description":"Api Documentation","version":"1.0","title":"Api Documentation","termsOfService":"urn:tos","contact":{},"license":{"name":"Apache 2.0","url":"http://www.apache.org/licenses/LICENSE-2.0"}},"host":"localhost:8080","basePath":"/","tags":[{"name":"sample-controller","description":"Sample Controller"}],"paths":{"/api/sample":{"get":{"tags":["sample-controller"],"summary":"sample","operationId":"sampleUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"type":"string"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}}}}
+```
+
+And be able to interact with swagger-ui at http://localhost:8080/swagger-ui.html as shown below
