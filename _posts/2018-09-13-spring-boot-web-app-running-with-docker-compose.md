@@ -4,7 +4,7 @@ published: true
 title: Spring  Boot web app running with Docker Compose
 tags: spring docker-compose
 ---
-In this post I am going to get a Docker image running using Docker Compose
+Get a Docker image running using Docker Compose
 > Docker Compose allows for bundling of multiple images which can form a deployment package which makes it very easy to setup and teardown, and provides a self-contained network in which containers can talk to each other by name
 
 This post requires a `joaovicente/demo:latest Docker` image which can be created by following instructions in the 
