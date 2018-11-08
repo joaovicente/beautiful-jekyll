@@ -97,7 +97,7 @@ After running the app again (`mvn spring-boot:run`) you should be able to get Sw
 
 ```
 $ curl http://localhost:8080/v2/api-docs
-{"swagger":"2.0","info":{"description":"Api Documentation","version":"1.0","title":"Api Documentation","termsOfService":"urn:tos","contact":{},"license":{"name":"Apache 2.0","url":"http://www.apache.org/licenses/LICENSE-2.0"}},"host":"localhost:8080","basePath":"/","tags":[{"name":"sample-controller","description":"Sample Controller"}],"paths":{"/api/sample":{"get":{"tags":["sample-controller"],"summary":"sample","operationId":"sampleUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"type":"string"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}}}}
+{"swagger":"2.0","info":{"description":"Api Documentation","version":"1.0","title":"Api Documentation","termsOfService":"urn:tos","contact":{},"license":{"name":"Apache 2.0","url":"http://www.apache.org/licenses/LICENSE-2.0"}},"host":"localhost:8080","basePath":"/","tags":[{"name":"sample-controller","description":"Sample Controller"}],"paths":{"/sample":{"get":{"tags":["sample-controller"],"summary":"sample","operationId":"sampleUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"type":"string"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}}}}
 ```
 
 And be able to interact with swagger-ui at http://localhost:8080/swagger-ui.html as shown below
