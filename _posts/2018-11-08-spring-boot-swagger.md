@@ -6,6 +6,8 @@ tags: spring swagger
 ---
 ## 1. Create a Spring Boot Swagger with Web dependency
 
+This post shows how to expose swagger for a simple Spring Boot Web app
+
 ```
 $ spring init -d=web -groupId=io.github.joaovicente -artifactId=springbootswagger spring-boot-swagger
 ```
