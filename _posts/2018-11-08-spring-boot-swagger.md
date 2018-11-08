@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class SampleController {
-    @RequestMapping(value="/api/sample", method=RequestMethod.GET)
+    @RequestMapping(value="/sample", method=RequestMethod.GET)
     public String sample()   {
         return "Sample!\n";
     }
@@ -85,8 +85,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.regex("/api.*"))
+                .apis(RequestHandlerSelectors.basePackage("io.github.joaovicente.springbootswagger"))
                 .build();
     }
 }
