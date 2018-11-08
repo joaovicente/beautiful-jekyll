@@ -4,7 +4,7 @@ published: true
 title: Spring Boot Swagger
 tags: spring swagger
 ---
-This post shows how to expose swagger for a simple Spring Boot Web app
+Expose swagger for a simple Spring Boot Web app
 
 ## 1. Create a Spring Boot Swagger with Web dependency
 
