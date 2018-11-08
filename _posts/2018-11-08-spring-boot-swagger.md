@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: Spring Boot Swagger
 ---
 ## 1. Create a Spring Boot Swagger with Web dependency
@@ -101,6 +101,3 @@ $ curl http://localhost:8080/v2/api-docs
 And be able to interact with swagger-ui at http://localhost:8080/swagger-ui.html as shown below
 
 ![swagger-ui.png]({{site.baseurl}}/img/swagger-ui.png)
-
-
-
