@@ -49,6 +49,21 @@ setuptools.setup(
 python3 -m pip install --user --upgrade setuptools testresources wheel
 ```
 
+## Generate distribution archive
+
+```
+python3 setup.py sdist bdist_wheel
+```
+
+Check the archive has been built
+
+```bash
+$ ls ./dist
+hello-joao-vicente-0.0.1.tar.gz  hello_joao_vicente-0.0.1-py3-none-any.whl
+```
+
+## Install in target environment
+
 Create a virtual enviroment
 
 ```bash
@@ -60,6 +75,27 @@ When finished with the environment deactivate it
 
 ```bash
 $ deactivate
+```
+
+Install the package built above
+
+```
+$ pip3 install wheel
+$ pip3 install ./dist/hello-joao-vicente-0.0.1.tar.gz
+```
+
+try it
+```
+$ python3
+>>> import hello
+
+>>> hello.greet()
+Hello Python package
+```
+
+Uninstall the package
+```
+pip3 uninstall hello-joao-vicente
 ```
 
 ## References
