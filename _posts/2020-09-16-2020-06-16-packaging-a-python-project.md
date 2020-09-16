@@ -1,7 +1,7 @@
 ---
 layout: post
 published: false
-title: 2020-06-16-packaging-a-python-project.md
+title: Packaging a Python project
 tags: python
 ---
 # A Packaging a Python project as a source distribution
