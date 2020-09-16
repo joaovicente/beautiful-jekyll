@@ -103,3 +103,4 @@ pip3 uninstall hello-joao-vicente
 [python.org Packages](https://docs.python.org/3/tutorial/modules.html#packages)
 [python.org Packaging projects](https://packaging.python.org/tutorials/packaging-projects)
 [python.org Installing from local archives](https://packaging.python.org/tutorials/installing-packages/#installing-from-local-archives)
+[python.org Virtual environments] (https://docs.python-guide.org/dev/virtualenvs/)
