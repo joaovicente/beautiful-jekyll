@@ -1,6 +1,6 @@
 ---
 layout: post
-published: true
+published: false
 title: 2020-06-16-packaging-a-python-project
 tags: python
 ---
