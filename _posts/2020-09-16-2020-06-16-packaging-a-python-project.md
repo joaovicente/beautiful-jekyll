@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: 2020-06-16-packaging-a-python-project
 ---
 ## A New Post
