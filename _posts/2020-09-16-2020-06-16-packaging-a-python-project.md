@@ -15,6 +15,34 @@ def greet():
 	print("Hello Python package")
 ```
 
+README.md
+```
+Something useful
+```
+
+setup.py
+```
+import setuptools
+
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
+setuptools.setup(
+    name="hello-joao-vicente",
+    version="0.0.1",
+    author="Joao Vicente",
+    author_email="joao.vicente@gmail.com",
+    description="Says hello",
+    packages=setuptools.find_packages(),
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    python_requires='>=3.6',
+)
+```
+
 ## Install setuptools and wheel 
 
 ```
