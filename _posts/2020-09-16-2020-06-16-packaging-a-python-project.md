@@ -1,6 +1,6 @@
 ---
 layout: post
-published: true
+published: false
 title: Packaging a Python project
 tags: python
 ---
