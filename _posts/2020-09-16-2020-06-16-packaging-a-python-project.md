@@ -3,7 +3,23 @@ layout: post
 published: false
 title: 2020-06-16-packaging-a-python-project
 ---
-## A New Post
+# A Packaging a Python project as a source distribution
+
+This setup will be minimalist, for consumption as a Source distribution
+
+## Create your project
+
+hello.py
+```python
+def greet():
+	print("Hello Python package")
+```
+
+## Install setuptools and wheel 
+
+```
+python3 -m pip install --user --upgrade setuptools testresources wheel
+```
 
 Create a virtual enviroment
 
@@ -19,5 +35,6 @@ $ deactivate
 ```
 
 ## References
+https://docs.python.org/3/tutorial/modules.html#packages
 https://packaging.python.org/tutorials/packaging-projects/
 https://packaging.python.org/tutorials/installing-packages/#installing-from-local-archives
