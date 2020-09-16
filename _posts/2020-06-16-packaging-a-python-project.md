@@ -113,4 +113,4 @@ pip3 uninstall hello-joao-vicente
 * [python.org Virtual environments](https://docs.python-guide.org/dev/virtualenvs/)
 * [https://realpython.com/python-modules-packages/#package-initialization](https://realpython.com/python-modules-packages/#package-initialization)
 * [https://timothybramlett.com/How_to_create_a_Python_Package_with___init__py.html](https://timothybramlett.com/How_to_create_a_Python_Package_with___init__py.html)
-
+* [https://github.com/gdamjan/hello-world-python-package](https://github.com/gdamjan/hello-world-python-package)
