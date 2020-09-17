@@ -139,8 +139,8 @@ All the code above is available in [https://github.com/joaovicente/mypypackage](
 
 If you want to install directly from github:
 
-```bash
-
+```
+$ pip3 install git+https://github.com/joaovicente/mypypackage.git#egg=mypypackagepip
 ```
 
 ## References
