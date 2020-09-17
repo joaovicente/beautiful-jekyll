@@ -10,14 +10,20 @@ This setup will be minimalist, for consumption as a Source distribution
 
 ## Create your project
 
-Create a directory to hold your package and step into it
+Create a directory to hold your project and step into it
 
 ```
 $ mkdir mypypackage
 $ cd mypypackage
 ```
 
-Now create your module `api.py` 
+Now create a folder to hold your package
+```
+$ mkdir mypypackage
+$ cd mypypackage
+```
+
+Create your module `api.py` 
 ```python
 from art import text2art
 
@@ -35,7 +41,13 @@ Now create an `__init__.py` file to manage functions classes you want to expose
 from .api import hello, goodbye
 ```
 
-Now create a `setup.py` describing your package
+The next set of files will be placed in the root directory of your project so go up one folder now
+
+```bash
+$ cd ..
+```
+
+Create a `setup.py` describing your package
 
 ```
 import setuptools
@@ -108,7 +120,14 @@ $ pip3 install wheel
 $ pip3 install ./dist/mypypackage-0.0.1.tar.gz
 ```
 
-try it
+Lets try the package now, but first move away from the project directory to ensure you are not importing the package from source (use `$ popd` to go back when you're done)
+
+```bash
+$ pushd ~
+```
+
+Time to try it!
+
 ```
 $ python3
 >>> import mypypackage
