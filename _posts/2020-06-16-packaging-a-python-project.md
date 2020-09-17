@@ -36,7 +36,7 @@ def goodbye():
 
 Notice that the module requires `text2art` library
 
-Now create an `__init__.py` file to manage functions classes you want to expose
+Now create an `__init__.py` file to declare the functions and classes you want to expose
 ```
 from .api import hello, goodbye
 ```
