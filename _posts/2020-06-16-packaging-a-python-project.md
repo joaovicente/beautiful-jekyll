@@ -135,10 +135,13 @@ $ deactivate
 
 ## Install from github
 
-All the code above is available in (https://github.com/joaovicente/mypypackage)
+All the code above is available in [https://github.com/joaovicente/mypypackage](https://github.com/joaovicente/mypypackage)
 
-## Install from github
+If you want to install directly from github:
 
+```bash
+
+```
 
 ## References
 * [python.org Packages](https://docs.python.org/3/tutorial/modules.html#packages)
